@@ -1,11 +1,14 @@
 import React from "react";
 
 export const InputUnit = props => (
-  <div className="form">
+  // <div className="form">
     <select
       className="formInput col-md-4 validate"
-      name="measureUnit"
-      id="measureUnit"
+      name={props.name}
+      type={props.type}
+      onChange={props.changeIt}
+      id={props.name}
+      // value={props.value}
       required="true"
     >
       <option value="" defaultValue>
@@ -39,5 +42,5 @@ export const InputUnit = props => (
       <option value="Yard">Yard</option>
       <option value="Year">Year</option>
     </select>
-  </div>
+  // </div>
 );

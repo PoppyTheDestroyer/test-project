@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { AddBtn } from "./components/AddBtn";
-import { InputUnit } from "./components/InputUnit";
 //import { DeleteBtn } from "./components/DeleteBtn";
 import { InputFld } from "./components/InputFld";
 import { InputTxt } from "./components/InputTxt";
+import Table from "./components/Table";
+import { InputUnit } from "./components/InputUnit";
+import Modal from "./components/Modal";
 
 class CreateRequest extends Component {
   constructor(props) {
@@ -14,7 +16,8 @@ class CreateRequest extends Component {
         itemName: "",
         itemQuant: "",
         measureUnit: "",
-        estPrice: ""
+        estPrice: "",
+        estTotal: ""
       },
       taxRate: "",
       estShip: "",
@@ -22,12 +25,13 @@ class CreateRequest extends Component {
       dateNeeded: "",
       vendor: "",
       justify: "",
-      comments: ""
-    };
+      comments: "",
+      showModal: false    };
   }
 
   handleItemSave = event => {
     event.preventDefault();
+    
   };
 
   handleInputChange = event => {
@@ -45,45 +49,64 @@ class CreateRequest extends Component {
     this.setState({
       [name]: value
     });
+    console.log(value);
   };
 
   render() {
+    const { showModal } = this.state;
     return (
       <form>
-        <div className="row">
-          <div className="col-md-5">
-            <label htmlFor="itemName">Item Name</label>
-            <InputFld
-              type="text"
-              name="itemName"
-              value={this.state.item.itemName}
-              onChange={this.handleInputChange}
-            />
-            <label htmlFor="itemQuant">Quantity</label>
-            <InputFld
-              type="number"
-              name="itemQuant"
-              value={this.state.item.itemQuant}
-              onChange={this.handleInputChange}
-            />
-            <label htmlFor="measureUnit">Unit of Measurement</label>
-            <InputUnit
-              type="select"
-              name="measureUnit"
-              value={this.state.item.measureUnit}
-              onChange={this.handleInputChange}
-            />
-            <label htmlFor="estPrice">Estimated Price (USD)</label>
-            <InputFld
-              precision={2}
-              step={0.01}
-              type="number"
-              name="estPrice"
-              value={this.state.item.estPrice}
-              onChange={this.handleInputChange}
-            />
+        <AddBtn
+          className="btn show-modal"
+          onClick={() => this.setState({ showModal: !showModal })}
+        >
+          Add Item
+        </AddBtn>
+        <Modal
+          open={showModal}
+          onClose={() => this.setState({ showModal: false })}
+        >
+          <label htmlFor="itemName">Item Name</label>
+          <InputFld
+            type="text"
+            name="itemName"
+            value={this.state.item.itemName}
+            onChange={this.handleInputChange}
+            autoFocus required
+          />
+          <label htmlFor="itemQuant">Quantity</label>
+          <InputFld
+            type="number"
+            name="itemQuant"
+            value={this.state.item.itemQuant}
+            onChange={this.handleInputChange}
+          />
+          <label htmlFor="measureUnit">Unit of Measurement</label>
+          <InputUnit
+            type="select"
+            name="measureUnit"
+            value={this.state.item.measureUnit}
+            changeIt={this.handleInputChange}
+          />
+          <label htmlFor="estPrice">Estimated Price (USD)</label>
+          <InputFld
+            precision={2}
+            step={0.01}
+            type="number"
+            name="estPrice"
+            value={this.state.item.estPrice}
+            onChange={this.handleInputChange}
+          />
+          <div className="row">
             <AddBtn onClick={this.handleItemSave}>Save Item</AddBtn>
+            <AddBtn onClick={this.handleItemSave}>Add Another</AddBtn>
+            <AddBtn onClick={() => this.setState({ showModal: false })}>
+              Cancel
+            </AddBtn>
           </div>
+        </Modal>
+        <div className="row">
+          <Table data={this.items} />
         </div>
         <div className="row">
           <div className="col-md-8">
