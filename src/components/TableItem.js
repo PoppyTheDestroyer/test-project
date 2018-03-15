@@ -1,12 +1,16 @@
-import React from "react";
+import React, { Component } from "react";
 
-export const TableItem = props => {
-  return (
-    <tr>
-      <td>{props.itemName}</td>
-      <td>{props.itemQuant}</td>
-      <td>{props.measureUnit}</td>
-      <td>{props.estPrice}</td>
-    </tr>
-  );
-};
+class TableItem extends Component {
+  render() {
+    return (
+      <tr>
+        <td>{this.props.itemName}</td>
+        <td>{this.props.itemQuant}</td>
+        <td>{this.props.measureUnit}</td>
+        <td>{this.props.estPrice}</td>
+      </tr>
+    );
+  }
+}
+
+export default TableItem;

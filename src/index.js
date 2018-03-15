@@ -11,6 +11,7 @@ import Modal from "./components/Modal";
 class CreateRequest extends Component {
   constructor(props) {
     super(props);
+    this.items={};
     this.state = {
       item: {
         itemName: "",
@@ -36,12 +37,12 @@ class CreateRequest extends Component {
 
   handleInputChange = event => {
     const { name, value } = event.target;
-    let items = {};
-    items[name] = value;
+    this.items[name] = value;
     this.setState({
-      item: items
+      item: this.items
     });
     console.log(value);
+    console.log(this.state);
   };
 
   handleOtherInputChange = event => {
@@ -70,16 +71,16 @@ class CreateRequest extends Component {
           <InputFld
             type="text"
             name="itemName"
-            value={this.state.item.itemName}
             onChange={this.handleInputChange}
+            value={this.state.item.itemName}
             autoFocus required
           />
           <label htmlFor="itemQuant">Quantity</label>
           <InputFld
             type="number"
             name="itemQuant"
-            value={this.state.item.itemQuant}
             onChange={this.handleInputChange}
+            value={this.state.item.itemQuant}
           />
           <label htmlFor="measureUnit">Unit of Measurement</label>
           <InputUnit
@@ -106,7 +107,7 @@ class CreateRequest extends Component {
           </div>
         </Modal>
         <div className="row">
-          <Table data={this.items} />
+          <Table className="newData" data={this.items} />
         </div>
         <div className="row">
           <div className="col-md-8">
