@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 
 
-class Table extends Component {
+class Table extends React.Component {
+  
   render() {
     return  (
         <div>
@@ -15,9 +16,16 @@ class Table extends Component {
             <th>Estimated Total</th>
           </tr>
         </thead>
-       <tbody>
-           
-           </tbody>
+       {/* <tbody>
+            <tr>
+             <td>{this.props.data.itemName}</td>
+             <td>{this.props.data.itemQuant}</td>
+             <td>{this.props.data.measureUnit}</td>
+             <td>{this.props.data.estPrice}</td>
+            <td>{this.total}</td>
+           </tr>
+          
+           </tbody> */}
       </table>
       </div>
     )

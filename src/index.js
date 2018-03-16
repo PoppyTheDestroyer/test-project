@@ -11,14 +11,14 @@ import Modal from "./components/Modal";
 class CreateRequest extends Component {
   constructor(props) {
     super(props);
-    this.items={};
+    this.items=[];
     this.state = {
       item: {
         itemName: "",
         itemQuant: "",
         measureUnit: "",
         estPrice: "",
-        estTotal: ""
+        estTotal: "4"
       },
       taxRate: "",
       estShip: "",
@@ -32,7 +32,8 @@ class CreateRequest extends Component {
 
   handleItemSave = event => {
     event.preventDefault();
-    
+    this.items.push(this.item);
+    console.log(this.items);    
   };
 
   handleInputChange = event => {
@@ -41,8 +42,8 @@ class CreateRequest extends Component {
     this.setState({
       item: this.items
     });
-    console.log(value);
-    console.log(this.state);
+    // console.log(value);
+    // console.log(this.state);
   };
 
   handleOtherInputChange = event => {
