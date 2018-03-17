@@ -18,7 +18,7 @@ class CreateRequest extends Component {
         itemQuant: "",
         measureUnit: "",
         estPrice: "",
-        estTotal: "4"
+        estTotal: ""
       },
       taxRate: "",
       estShip: "",
@@ -32,7 +32,11 @@ class CreateRequest extends Component {
 
   handleItemSave = event => {
     event.preventDefault();
-    this.items.push(this.item);
+    this.items.push({itemName: this.state.item.itemName,
+    itemQuant: this.state.item.itemQuant,
+  measureUnit: this.state.item.measureUnit,
+estPrice: this.state.item.estPrice,
+estTotal: parseFloat(this.state.item.itemQuant * this.state.item.estPrice)});
     console.log(this.items);    
   };
 
@@ -52,7 +56,7 @@ class CreateRequest extends Component {
       [name]: value
     });
     console.log(value);
-  };
+  }; 
 
   render() {
     const { showModal } = this.state;

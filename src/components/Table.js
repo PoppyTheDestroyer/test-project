@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-
-
-class Table extends React.Component {
-  
-  render() {
-    return  (
-        <div>
+import TableItem from "./TableItem";
+const Table = props => {
+  console.log(props.data);
+  return (
+    <div>
       <table>
         <thead>
           <tr>
@@ -16,20 +14,13 @@ class Table extends React.Component {
             <th>Estimated Total</th>
           </tr>
         </thead>
-       {/* <tbody>
-            <tr>
-             <td>{this.props.data.itemName}</td>
-             <td>{this.props.data.itemQuant}</td>
-             <td>{this.props.data.measureUnit}</td>
-             <td>{this.props.data.estPrice}</td>
-            <td>{this.total}</td>
-           </tr>
-          
-           </tbody> */}
+        <tbody>
+        <TableItem 
+        info={props.data} />
+        </tbody>
       </table>
-      </div>
-    )
-  }
-}
+    </div>
+  );
+};
 
 export default Table;
